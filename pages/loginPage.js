@@ -7,7 +7,7 @@ export class loginPage {
   }
 
   async goto() {
-    await this.page.goto(process.env.devURL, {
+    await this.page.goto(process.env.devURL + "/auth/login", {
       waitUntil: "domcontentloaded", // corrected
     });
   }
