@@ -1,0 +1,26 @@
+{
+  "name": "orange-hrm-playwright-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arunjo-se/Orange-HRM-playwright-Automation-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Arunjo-se/Orange-HRM-playwright-Automation-js/issues"
+  },
+  "homepage": "https://github.com/Arunjo-se/Orange-HRM-playwright-Automation-js#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.55.1",
+    "@types/node": "^24.5.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2"
+  }
+}
