@@ -52,21 +52,31 @@ export async function ensureLoggedIn(page) {
         }
       }
 
-      // Validate session by navigating to a protected page
-      //await page.goto(process.env.devURL + "/dashboard/index", {
-      //  waitUntil: "domcontentloaded",
-      //});
-      // Check for a known element that only appears when logged in
-      //await page.waitForSelector("h6:has-text('Dashboard')", { timeout: 4000 });
-      console.log("✅ Session valid, reusing.");
-      return;
+      // Always navigate after restoring session
+      await page.goto(process.env.devURL, { waitUntil: "domcontentloaded" });
+
+      // If login form is visible, session is expired/invalid
+      const isLoginPage = await page
+        .locator('input[name="username"], button:has-text("Login")')
+        .isVisible({ timeout: 2000 })
+        .catch(() => false);
+
+      if (!isLoginPage) {
+        console.log("✅ Session valid, reusing.");
+        return;
+      } else {
+        console.log(
+          "⚠️ Session expired, login page detected. Re-logging in..."
+        );
+        fs.rmSync(SESSION_FILE, { force: true });
+      }
     } catch (err) {
       console.log("⚠️ Session invalid or data error, re-logging in...");
       fs.rmSync(SESSION_FILE, { force: true });
     }
   }
 
-  // Fresh login via POM
+  // Always login if session is missing or expired
   const login = new loginPage(page);
   await login.goto();
   await login.loginFunction(process.env.AdminUserName, process.env.password);

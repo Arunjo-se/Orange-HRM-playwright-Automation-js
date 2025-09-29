@@ -3,6 +3,7 @@ import { ensureLoggedIn } from "../utils/session.js";
 import dotenv from "dotenv";
 dotenv.config();
 
+//----- session login is used here
 test("Open Dashboard", async ({ page }) => {
   // This handles login + navigation to dashboard
   await ensureLoggedIn(page);
@@ -10,11 +11,8 @@ test("Open Dashboard", async ({ page }) => {
   await page.goto(process.env.devURL + "/pim/viewEmployeeList", {
     waitUntil: "domcontentloaded",
   });
-  // // ✅ No need to navigate again, just assert
-  // await expect(page.getByRole("heading", { name: "Dashboard" })).toBeVisible();
 
-  // // Interact further
-  // await page.locator("//span[text()='Admin']").click();
+  console.log("Dashboard opened");
 
   await page.waitForTimeout(5000);
 });
