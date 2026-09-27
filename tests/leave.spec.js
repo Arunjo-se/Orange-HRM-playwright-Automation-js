@@ -14,8 +14,11 @@ test("Open Dashboard", async ({ page }) => {
   // This handles login + navigation to dashboard
   //await ensureLoggedIn(page);
 
+  console.log("Navigating to:", process.env.devURL + "/leave/viewLeaveList");
+
+  
   await page.goto(process.env.devURL + "/leave/viewLeaveList", {
-    waitUntil: "domcontentloaded",
+    waitUntil: "networkidle",
   });
 
   console.log("leave opened");
