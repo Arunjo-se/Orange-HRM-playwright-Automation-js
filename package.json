@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/Arunjo-se/Orange-HRM-playwright-Automation-js#readme",
   "devDependencies": {
-    "@playwright/test": "^1.55.1",
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
     "@types/node": "^24.5.2"
   },
   "dependencies": {
